@@ -18,12 +18,12 @@ timezone: Asia/Kathmandu
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: Utsav Poudyal # the main title
+title: "Utsav's Site" # the main title
 
-tagline: # it will display as the sub-title
+tagline: A piece of my internet # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
-  # A place where I write the things I wish to share
+  A place where I write the things I wish to share
 
 # fill in the protocol & hostname for your site, e.g., 'https://username.github.io'
 url: "https://utsavpoudyal.com.np"
@@ -77,7 +77,7 @@ theme_mode: # [light|dark]
 img_cdn:
 
 # the avatar on sidebar, support local or CORS resources
-avatar:
+avatar: '/profile_avatar/profilepp.jpg'
 
 # boolean type, the global switch for TOC in posts.
 toc: true
