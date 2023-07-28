@@ -119,7 +119,6 @@ paginate: 10
 
 # ------------ The following options are not recommended to be modified ------------------
 
-
 kramdown:
   parse_block_html: true
   syntax_highlighter: rouge
