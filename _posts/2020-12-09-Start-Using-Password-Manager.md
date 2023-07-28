@@ -1,8 +1,8 @@
 ---
 Title: Start using Password Manager
 date: 2020-12-09 19:35:00
-categories: [homelab, hardware]
-tags: [servers, dell, hp, supermicro]
+categories: [Technology]
+tags: [privacy, security, tip]
 ---
 ## Introduction
 I cannot tell you how much money you save not having to goto your bank every time to reset your passwords and therefore not allowing them to charge you Rs.50. Modern problems require modern solutions.
@@ -13,8 +13,8 @@ I cannot tell you how much money you save not having to goto your bank every tim
 ## Steps
 ### It is actually quiet easy
 
-* Install Keepass from [Keepass](https://keepass.info)
-* Create an account in [MEGA](https://mega.nz)
+* Install Keepass from [Keepass.info website](https://keepass.info)
+* Create an account in [MEGA.nz](https://mega.nz)
 * Install Megasync desktop client
 * Setup a sync between a folder in your computer to a folder in the cloud
 * Start using Keepass and save your password database in that folder which will automatically be synced to MEGA.
@@ -28,3 +28,7 @@ In the worst case scenario if you lose your Keepass file, you will have to type 
 In those kind of password managers, if I somehow end up guessing your password, all I have to do is login to their website. I can do that from anywhere mostly.
 However, in something local like Keepass, I will also need a way to steal your database file which gives you more time to react.
 They do allow you to have 2FA, but you will still need a place to securely store those 2FA tokens somewhere. This would be another solution but you will need a phone to login every time, unless you get a good TOTP app on desktop.
+
+## Things to remember with Keepass
+* There is no way to restore your password manager master password
+* You must manually make sure you do not lose your password database (kdbx file)
