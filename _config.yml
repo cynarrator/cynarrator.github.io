@@ -39,7 +39,8 @@ social:
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
   name: Utsav Poudyal
   email: websitewhljrxpxbh@outlook.com # change to your email address
-  # links:
+  links:
+    - https://www.gitlab.com/cy_narrator
   #   # The first element serves as the copyright owner's link
   #   # - https://twitter.com/username # change to your twitter homepage
   #   # - https://github.com/cynarrator # change to your github homepage
