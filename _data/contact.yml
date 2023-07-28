@@ -1,13 +1,20 @@
 #  The contact options.
 
-- type: github
-  icon: "fab fa-github"
+- type: gitlab
+  icon: "fa-brands fa-gitlab"
+  url: 'https://gitlab.com/cy_narrator'
 
-- type: twitter
-  icon: "fab fa-twitter"
+# - type: twitter
+#   icon: "fab fa-twitter"
 
-- type: email
+- type: keyoxide
+  icon: "fa-solid fa-key"
+  url: 'https://keyoxide.org/9E07253A7D9F08D00DF02077AB6852430B0BE29C'
+  noblank: false
+
+- type: webmail
   icon: "fas fa-envelope"
+  url: "mailto:websitewhljrxpxbh@outlook.com"
   noblank: true # open link in current tab
 
 - type: rss
