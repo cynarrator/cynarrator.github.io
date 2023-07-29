@@ -2,7 +2,7 @@
 Title: Keyboard and mouse do not work sometime in Linux when booting up
 date: 2019-06-28 9:50 AM
 categories: [Technology]
-tags: [malware]
+tags: [linux, issue]
 ---
 
 Problem: *Keyboard and touchpad suddenly stops working after a reboot on Linux.*

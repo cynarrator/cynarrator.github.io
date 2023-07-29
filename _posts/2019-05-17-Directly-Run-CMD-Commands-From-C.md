@@ -2,7 +2,7 @@
 Title: Run CMD commands from C program
 date: 2019-05-17 4:23 PM
 categories: [Technology]
-tags: [programming, c]
+tags: [programming, C]
 ---
 
 I am sure 90% of the books in C programming wont have it but, you can actually run commands into the command prompt directly from your C code using the system() function.
