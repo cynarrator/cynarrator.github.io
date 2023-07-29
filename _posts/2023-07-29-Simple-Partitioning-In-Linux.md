@@ -30,6 +30,8 @@ Well, you may have always wanted to install Linux and saw that the process is qu
 
 5: You do not need a seperate ``/boot`` partition unless you are doing LVM which is out of scope of this article. It is also not necessary to have bootable flags set to any of your partitions anymore. But if you want or are having issues, set bootable flag for your ``/`` mountpoint
 
+6: Try to make every OS in the system use the same partition scheme. For example, if Windows uses UEFI, install Linux as UEFI as well
+
 ## Do you use UEFI or Legacy BIOS
 There are some slight difference between UEFI and Legacy BIOS installation, namely, legacy BIOS does not need a dedicated EFI partition. Also as a side note, make sure your OS installation drive was booted into UEFI mode and not Legacy mode when you want to install that OS into UEFI because that is a common mistake people make.
 
