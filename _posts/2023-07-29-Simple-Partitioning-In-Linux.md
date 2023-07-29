@@ -38,10 +38,10 @@ Bottom line, just ignore the entry for EFI if you are using Legacy BIOS(MBR)
 ## Recommendations
 <table>
     <thead>
-        <th>Mount Point</th>
-        <th>Size</th>
-        <th>Partition Name</th>
-        <th>Filesystem</th>
+        <tr>Mount Point</tr>
+        <tr>Size</tr>
+        <tr>Partition Name</tr>
+        <tr>Filesystem</tr>
     </thead>
     <tbody>
         <tr>
