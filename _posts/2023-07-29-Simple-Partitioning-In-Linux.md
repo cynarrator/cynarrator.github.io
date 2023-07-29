@@ -22,7 +22,7 @@ Well, you may have always wanted to install Linux and saw that the process is qu
 ## General rule of thumb
 1: If you want to dualboot Windows with Linux or only want to install Linux, you will first install Windows before Linux.
 
-2: If Linux is to be used as your main Operating system to store important files and real work, you atleast need a seperate ``/home`` partition
+2: If Linux is to be used as your main Operating system to store important files and real work, you atleast need a seperate ``/home`` partition. However, if you intend to use Linux rarely and as a result provided it a very small space in your drive, you can use ``all files in one partition`` assuming none of your important files are going to be in the new Linux installation
 
 3: It is true that running out of memory is rare in Linux systems. So you may question the need of a swap partition. However, swap partition is also used in Hibernation. So if you think you will need to hibernate, I suggest having your swap partition slightly bigger than your RAM
 
