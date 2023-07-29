@@ -36,69 +36,11 @@ There are some slight difference between UEFI and Legacy BIOS installation, name
 Bottom line, just ignore the entry for EFI if you are using Legacy BIOS(MBR)
 
 ## Recommendations
-<table>
-    <thead>
-        <tr>Mount Point</tr>
-        <tr>Size</tr>
-        <tr>Partition Name</tr>
-        <tr>Filesystem</tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-                /
-            </td>
-            <td>
-                25GB to 30GB
-            </td>
-            <td>
-                Root Partition
-            </td>
-            <td>
-                ext4
-            </td>
-        </tr>
-        <tr>
-            <td>
-                
-            </td>
-            <td>
-            Size of your RAM + 2% extra 
-            </td>
-            <td>
-                Swap Partition
-            </td>
-            <td>
-                swap
-            </td>
-        </tr>
-        <tr>
-            <td>
-            /boot/efi
-            </td>
-            <td>
-                512MB
-            </td>
-            <td>
-                EFI Partiton
-            </td>
-            <td>
-                FAT32
-            </td>
-        </tr>
-        <tr>
-            <td>
-                /home
-            </td>
-            <td>
-                Remaining Space
-            </td>
-            <td>
-                Home Partition
-            </td>
-            <td>
-                ext4
-            </td>
-        </tr>
-    </tbody>
-</table>
+```
+| Mount Point | Size                        | Partition Name | File System |
+|-------------|-----------------------------|----------------|-------------|
+| /           | 25GB to 30GB                | root partition | ext4        |
+|             | Size of your ram + 2% extra | swap partition | swap        |
+| /boot/efi   | 512 MB                      | efi partition  | FAT32       |
+| /home       | Remaining space             | home partition | ext4        |
+```
