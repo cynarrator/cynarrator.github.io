@@ -34,6 +34,7 @@ Well, you may have always wanted to install Linux and saw that the process is qu
 
 7: Do not put your root partition(the one with the mountpoint ``/``) as a Logical partition
 
+8: Unlike in Windows, it is difficult to resize partitions in a Linux system after it is set up unless you use LVM which is out of the scope of this article
 
 ## Do you use UEFI or Legacy BIOS
 There are some slight difference between UEFI and Legacy BIOS installation, namely, legacy BIOS does not need a dedicated EFI partition. Also as a side note, make sure your OS installation drive was booted into UEFI mode and not Legacy mode when you want to install that OS into UEFI because that is a common mistake people make.
