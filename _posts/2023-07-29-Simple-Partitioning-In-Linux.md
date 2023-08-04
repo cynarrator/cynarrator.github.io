@@ -32,6 +32,9 @@ Well, you may have always wanted to install Linux and saw that the process is qu
 
 6: Try to make every OS in the system use the same partition scheme. For example, if Windows uses UEFI, install Linux as UEFI as well
 
+7: Do not put your root partition(the one with the mountpoint ``/``) as a Logical partition
+
+
 ## Do you use UEFI or Legacy BIOS
 There are some slight difference between UEFI and Legacy BIOS installation, namely, legacy BIOS does not need a dedicated EFI partition. Also as a side note, make sure your OS installation drive was booted into UEFI mode and not Legacy mode when you want to install that OS into UEFI because that is a common mistake people make.
 
