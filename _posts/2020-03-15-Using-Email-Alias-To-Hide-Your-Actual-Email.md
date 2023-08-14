@@ -1,7 +1,7 @@
 ---
 Title: Using Email Alias to Hide Your Actual Email
 date: 2020-03-15 02:34 PM
-categories: [Technology]
+categories: [Misc]
 tags: [privacy, security, tip]
 ---
 

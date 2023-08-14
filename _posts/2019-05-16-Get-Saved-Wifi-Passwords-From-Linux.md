@@ -1,7 +1,7 @@
 ---
 Title: Get Saved Wifi Password from Linux
 date: 2019-05-16 12:01 AM
-categories: [Technology]
+categories: [Operting System]
 tags: [linux, tip]
 ---
 

@@ -1,7 +1,7 @@
 ---
 Title: Check if an IP address is of a VPN/Proxy or not
 date: 2019-7-22 12:09 PM
-categories: [Technology]
+categories: [Misc]
 tags: [security]
 ---
 

@@ -1,7 +1,7 @@
 ---
 Title: Signing the text in your about me section of your Facebook profile using GPG
 date: 2021-06-12 5:19:30 PM
-categories: [Technology]
+categories: [Misc]
 tags: [privacy, security, tip]
 ---
 ## Introduction

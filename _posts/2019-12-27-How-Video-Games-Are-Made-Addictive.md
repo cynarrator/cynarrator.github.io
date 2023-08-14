@@ -1,7 +1,7 @@
 ---
 Title: How Video Games are Made Addictive
 date: 2019-12-27 6:49 PM
-categories: [Technology]
+categories: [Misc]
 tags: [gaming, malware]
 ---
 

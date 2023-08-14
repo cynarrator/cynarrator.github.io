@@ -1,7 +1,7 @@
 ---
 Title: Why Do Hackers OR Tech Savvy People Prefer Linux
 date: 2019-9-01 8:13 AM
-categories: [Technology]
+categories: [Operting System]
 tags: [linux, culture]
 ---
 

@@ -1,8 +1,8 @@
 ---
 Title: Check if an IP address is of a VPN/Proxy or not
 date: 2023-7-29 07:49 PM
-categories: [Technology]
-tags: [linux]
+categories: [Operting System]
+tags: [partition]
 ---
 
 ## Introduction

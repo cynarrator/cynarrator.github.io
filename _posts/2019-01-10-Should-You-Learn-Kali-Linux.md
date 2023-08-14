@@ -1,7 +1,7 @@
 ---
 Title: Should you learn Kali Linux as an absolute beginner
 date: 2019-01-10 9:17 PM
-categories: [Technology]
+categories: [Operting System]
 tags: [linux]
 ---
 

@@ -1,7 +1,7 @@
 ---
 Title: Start using Password Manager
 date: 2020-12-09 09:35 PM
-categories: [Technology]
+categories: [Misc]
 tags: [privacy, security, tip]
 ---
 ## Introduction

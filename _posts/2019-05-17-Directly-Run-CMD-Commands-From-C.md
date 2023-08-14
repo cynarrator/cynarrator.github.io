@@ -1,7 +1,7 @@
 ---
 Title: Run CMD commands from C program
 date: 2019-05-17 4:23 PM
-categories: [Technology]
+categories: [Programming]
 tags: [programming, c]
 ---
 

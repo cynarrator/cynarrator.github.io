@@ -1,7 +1,7 @@
 ---
 Title: Do Not Pay For Ransomware
 date: 2019-8-04 9:31 AM
-categories: [Technology]
+categories: [Misc]
 tags: [malware]
 ---
 

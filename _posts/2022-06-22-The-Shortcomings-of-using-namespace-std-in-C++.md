@@ -1,8 +1,8 @@
 ---
 Title: The Shortcomings of using namespace std in C++
 date: 2022-6-22 08:26 AM
-categories: [Technology]
-tags: [programming, cpp]
+categories: [Programming]
+tags: [cpp]
 ---
 ## Introduction
 You have to learn C++ in many Bachelors in Information Technology program as a part of your college syllabus, usually in second semester. Students are supposed to write all the C++ code in a paper with a pen, the less they write and cross, the more tidy their work becomes, resulting in better marks. So teachers teach students to ``using namespace std`` so that they do not forget to use ``std::`` when needed and its less things to write.
