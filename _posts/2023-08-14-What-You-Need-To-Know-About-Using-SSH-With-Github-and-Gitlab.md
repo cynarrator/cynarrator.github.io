@@ -123,7 +123,7 @@ To clarify, none of the enteries in that config file contain your gitlab or gith
 
 * ``User`` is the UNIX username of the git server. **It is not your gitlab or github username as you may think** Unless you have a selfhosted gitlab server, you are always going to set it to ``git`` user. And it is the same for Gitlab and Github as many things are.
 
-* ``Host`` is where you put in the URL of your git server. If it is gitlab, it will be ``gitlab.com`` and if its github, it will be ``github.com`` without any ``https://`` or ``.com``. In case of selfhosted system, you would put in the hostname of your selfhosted server including any subdomains.
+* ``Host`` is where you put in the URL of your git server. If it is gitlab, it will be ``gitlab.com`` and if its github, it will be ``github.com`` without any ``https://``. In case of selfhosted system, you would put in the hostname of your selfhosted server including any subdomains.
 
 **It is possible for you to use one key for Gitlab, another key for Github and third key for something else. Just change ``Host`` accordingly**
 
