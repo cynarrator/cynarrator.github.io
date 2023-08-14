@@ -15,7 +15,7 @@ I am going to share two methods of using SSH to Log in Github and Gitlab. Becaus
 ### For Windows users
 * Make sure that GitBash is installed
 * Your ssh folder could be located in ``C://Users/<your_username>/.ssh/``. You may want to enable ``Show Hidden Folders`` option if you do not see it
-* Windows uses backshash(\\) to indicate directory path, however, you are supposed to use forwardslash(/) in the config file
+* Windows uses backslash(\\) to indicate directory path, however, you are supposed to use forwardslash(/) in the config file
 * Tick ``File name extensions`` under File explorer View tab. You should always keep it enabled
 
 ### For GNU/Linux users
