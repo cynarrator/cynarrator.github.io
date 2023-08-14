@@ -1,7 +1,7 @@
 ---
 Title: Active State Power Management in Linux
 date: 2018-12-29 9:11 AM
-categories: [Technology]
+categories: [Operating System]
 tags: [linux]
 ---
 
