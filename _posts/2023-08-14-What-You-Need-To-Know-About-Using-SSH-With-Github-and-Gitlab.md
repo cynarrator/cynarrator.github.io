@@ -77,23 +77,7 @@ In my case, my public key generated above for ``personal_key.pub`` looks like
 ```
 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDvsX4vRhNZYrBPQTsjXVfys8kvyRoTPTuvSauOF4hiA mykeyComment
 ```
-**This is the key you want to give to others**
-
-RSA key tends to be longer than that so do not get confused
-
-Just to demonstrate, my private key ``personal_key`` looks like this
-```
------BEGIN OPENSSH PRIVATE KEY-----
-b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW
-QyNTUxOQAAACA77F+L0YTWWKwT0E7I11X8rPJL8kaEz07r0mrjheIYgAAAAJAgd9rlIHfa
-5QAAAAtzc2gtZWQyNTUxOQAAACA77F+L0YTWWKwT0E7I11X8rPJL8kaEz07r0mrjheIYgA
-AAAEBHtot4KGjqJlwJfaTfa4va8WzLSYq9LzIDgCWslWy4ZTvsX4vRhNZYrBPQTsjXVfys
-8kvyRoTPTuvSauOF4hiAAAAADG15a2V5Q29tbWVudAE=
------END OPENSSH PRIVATE KEY-----
-```
-**This is the key you want to keep secret. You do not want to copy this one**
-
-> I am not going to use these keys in my actual account so it is okay for me to share them publicly. You should not do that for your keys
+**This is the key you want to give to others including Gitlab**
 
 ## Scenario 1: Using different SSH keys to authenticate with different accounts in Gitlab
 As an example, say you have two different accounts, one for your personal use and one for your professional use. Say that your personal user gitlab username is ``personal_gitlab`` and your professional user gitlab username is ``professional_gitlab``
