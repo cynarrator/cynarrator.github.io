@@ -61,7 +61,7 @@ The key's randomart image is:
 
 * In line 1, you can provide full path to where you want to save your keys. If you do not provide anything, the one in the parenthesis is going to be used. If you just provide the file name, your keys will be saved in your current working directory. Your current working directory being where you were when you run that command.
 
-* In line 2 and 3, you will be asked for password, you can enter your password and click on Enter. But you dont have to. If you leave it empty and just press enter, no password will be set.
+* In line 2 and 3, you will be asked for password, you can enter your password and press on Enter. But you dont have to. If you leave it empty and just press enter, no password will be set.
 
 * In line 4, it says ``Your identification has been saved in personal_key`` where ``personal_key`` is your private key. You should keep it private.
 
