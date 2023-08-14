@@ -1,7 +1,7 @@
 ---
 Title: Windows and Linux have differnt time set in dualboot
 date: 2020-02-04 07:10 PM
-categories: [Operting System]
+categories: [Operating System]
 tags: [linux, windows]
 ---
 

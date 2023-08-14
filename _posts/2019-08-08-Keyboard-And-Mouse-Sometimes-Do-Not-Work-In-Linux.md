@@ -1,7 +1,7 @@
 ---
 Title: Keyboard and mouse do not work sometime in Linux when booting up
 date: 2019-06-28 9:50 AM
-categories: [Operting System]
+categories: [Operating System]
 tags: [linux, issue]
 ---
 

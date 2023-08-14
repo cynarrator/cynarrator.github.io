@@ -1,7 +1,7 @@
 ---
 Title: Adding UNIX Style sudo in Windows
 date: 2019-02-01 7:11 AM
-categories: [Operting System]
+categories: [Operating System]
 tags: [windows]
 ---
 

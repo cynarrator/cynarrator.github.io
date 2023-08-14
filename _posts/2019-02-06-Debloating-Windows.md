@@ -1,7 +1,7 @@
 ---
 Title: Remove Bloatware from Windows
 date: 2019-02-06 6:08 AM
-categories: [Operting System]
+categories: [Operating System]
 tags: [windows]
 ---
 

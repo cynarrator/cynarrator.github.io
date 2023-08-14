@@ -1,7 +1,7 @@
 ---
 Title: Check if an IP address is of a VPN/Proxy or not
 date: 2023-7-29 07:49 PM
-categories: [Operting System]
+categories: [Operating System]
 tags: [partition]
 ---
 
