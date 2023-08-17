@@ -18,6 +18,15 @@ I am going to share two methods of using SSH to Log in Github and Gitlab. Becaus
 * Windows uses backslash(\\) to indicate directory path, however, you are supposed to use forwardslash(/) in the config file
 * Tick ``File name extensions`` under File explorer View tab. You should always keep it enabled
 
+#### Remove all the user permission other than the owner
+If you get an error ``Bad owner or permissions on C:\\Users\user\.ssh\config`` after you follow the instructions during any further ssh connections, try to remove all the user permissions and inherited permissions from ``.ssh`` folder. Follow the following steps to achive that
+* Right click on ``.ssh`` folder and go to Properties
+* Go to ``Security`` tab
+* Click on ``Advanced``
+* Click on ``Disable inheritance`` in the bottom left screen
+* Select ``Remove all inherited permissions from this object`` if asked
+* You may be given a warning stating only the owner can change permission and all other will be lost, select ok
+
 ### For GNU/Linux users
 * You will have to install ``git`` package following your distribution's package manager, most have them in their official repository
 * Your ssh folder is located under ``~/.ssh/`` which is a hidden directory starting with a ``.`` so you may want to use ``ls -a`` to see it in your home directory
