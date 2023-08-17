@@ -116,15 +116,26 @@ This is what the config looks like
 Host nick1
    IdentityFile C://Users/user/.ssh/personal_key
    User git
+   Port 22
+   PreferredAuthentications publickey
    HostName gitlab.com
 
 Host nick2
    IdentityFile C://Users/user/.ssh/professional_key
    User git
+   Port 22
+   PreferredAuthentications publickey
+   HostName gitlab.com
+
+Host *
+   IdentifyFile C://Users/user/.ssh/default_key
+   User git
+   Port 22
+   PreferredAuthentications publickey
    HostName gitlab.com
 ```
 
-To clarify, none of the enteries in that config file contain your gitlab or github username. Your actual github and gitlab usernames come when creating a ``remote`` for your repositories.
+To clarify, none of the enteries in that config file contain your gitlab or github username. Your actual github and gitlab usernames come when creating a ``remote`` for your repositories. The indentation is not necessary per say but will make it easier to read for other people.
 
 * ``nick1`` and ``nick2`` are names that you give for your keys. Rather than calling them ``personal_key`` and ``professional_key`` you call them ``nick1`` and ``nick2`` from now on.
 
@@ -132,7 +143,13 @@ To clarify, none of the enteries in that config file contain your gitlab or gith
 
 * ``User`` is the UNIX username of the git server. **It is not your gitlab or github username as you may think** Unless you have a selfhosted gitlab server, you are always going to set it to ``git`` user. And it is the same for Gitlab and Github as many things are.
 
-* ``Host`` is where you put in the URL of your git server. If it is gitlab, it will be ``gitlab.com`` and if its github, it will be ``github.com`` without any ``https://``. In case of selfhosted system, you would put in the hostname of your selfhosted server including any subdomains.
+* ``Port`` defines the port number ssh is listening on the server, by default the port is ``22`` and Github and Gitlab both use the default port. Change it only in case you need to.
+
+* ``PreferredAuthentications`` defines what kind of Authentication mechanism do you wish to use with the server. Gitlab and Github only accept ``publickey`` as an authentication mechanism. If your ssh server required the use of password, you would set it to ``password`` instead but it is not the case here. If you absolutely want to force using public key in case of weird issues, you may also set ``PubkeyAuthentication`` to ``yes`` or ``no`` in a similar way.
+
+* ``HostName`` is where you put in the URL of your git server. If it is gitlab, it will be ``gitlab.com`` and if its github, it will be ``github.com`` without any ``https://``. In case of selfhosted system, you would put in the hostname of your selfhosted server including any subdomains.
+
+* ``Host *`` matches to all the host. This is a default fallback entry. If you need to have a default identity, you put it here. It is not necessary to have but I have mentioned it nontheless
 
 **It is possible for you to use one key for Gitlab, another key for Github and third key for something else. Just change ``Host`` accordingly**
 
