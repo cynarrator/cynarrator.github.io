@@ -109,7 +109,7 @@ You want to copy all the contents from your public key by opening it in a text e
 You will paste ``personal_key.pub`` to your personal gitlab account and ``professional_key.pub`` to your professional gitlab account
 
 #### 2: Create config file for ssh
-Now you need to create a configuration file using a text editor such as notepad for ssh to use. Keep in mind that this has to be saved in your ssh folder with the name ``config`` and no extension. **Make sure there is no file extension and that it is in your ssh folder**
+Now you need to create a configuration file using a text editor such as notepad for ssh to use. Keep in mind that this has to be saved in your ssh folder with the name ``config`` and no extension. **Make sure there is no file extension like txt and that it is in your ssh folder. Also use simple text editor such as Notepad and not a Word processor like Microsoft Word**
 
 This is what the config looks like
 ```
