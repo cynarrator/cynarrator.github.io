@@ -1,5 +1,5 @@
 ---
-Title: Qhat you need to know about using SSH with Github and Gitlab
+Title: What you need to know about using SSH with Github and Gitlab
 date: 2023-08-14 2:58PM
 categories: [Git]
 tags: [github, gitlab, ssh]
