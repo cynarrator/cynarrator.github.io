@@ -7,7 +7,7 @@
 # - type: twitter
 #   icon: "fab fa-twitter"
 
-- type: openpgp
+- type: open-pgp
   icon: "fa-solid fa-key"
   url: 'https://keys.openpgp.org/search?q=B338349A13810CA528A21C6C80B84586FC4CA223'
   noblank: false
