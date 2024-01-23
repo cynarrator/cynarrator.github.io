@@ -7,9 +7,9 @@
 # - type: twitter
 #   icon: "fab fa-twitter"
 
-- type: keyoxide
+- type: openpgp
   icon: "fa-solid fa-key"
-  url: 'https://keys.openpgp.org/pks/lookup?op=get&options=mr&search=0x9E07253A7D9F08D00DF02077AB6852430B0BE29C'
+  url: 'https://keys.openpgp.org/search?q=B338349A13810CA528A21C6C80B84586FC4CA223'
   noblank: false
 
 - type: webmail
