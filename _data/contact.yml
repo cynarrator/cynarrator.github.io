@@ -9,7 +9,7 @@
 
 - type: open-pgp
   icon: "fa-solid fa-key"
-  url: 'https://keys.openpgp.org/search?q=B338349A13810CA528A21C6C80B84586FC4CA223'
+  url: 'https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xefb9accd95cba34198040a2ee9c4f4ee327cfe76'
   noblank: false
 
 - type: webmail
