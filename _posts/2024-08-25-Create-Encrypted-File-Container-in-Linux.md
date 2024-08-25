@@ -1,25 +1,8 @@
-  
-
 ---
-
-  
-
 Title: Create an Encrypted file container in Linux
-
-  
-
 date: 2024-08-25 9:51 AM
-
-  
-
 categories: [Operating System]
-
-  
-
 tags: [linux, tip, privacy, security]
-
-  
-
 ---
 
   
