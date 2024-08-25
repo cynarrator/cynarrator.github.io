@@ -158,10 +158,12 @@ You need to be very careful when running dd command, be especially sure to doubl
 I wanted to explain everything manually. However all this can be automated with scripts. You can easily write a bash script to do all these in a single command.
 
   
-
+## Get the scripts to do it
+The whole process is quiet tedious without using scripts. That is why I have also prepared some scripts you can use to quickly get it working. You can get those scripts from [my gitlab](https://gitlab.com/cy_narrator/lukshelper)
   
 
-## Steps to perform
+## Set it up manually
+If you want to do everything manually, perhaps you want to understand every step clearly or want to modify the steps below for your needs than follow along this post
 
   
 
