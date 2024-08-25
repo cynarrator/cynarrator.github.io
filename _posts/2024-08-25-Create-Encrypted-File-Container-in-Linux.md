@@ -96,7 +96,16 @@ Once you opened the LUKS volume, you need to format it with a filesystem to be a
 ```
 sudo mount -t exfat -o uid=$(id -u),gid=$(id -g) /dev/mapper/myVolume /mnt
 ```
-Here, I have mounted that volume in `/mnt` and given it a permission of the current user to do whatever that user wants
+Here, I have mounted that volume in `/mnt` and given it a permission of the current user to do whatever that user wants.
+
+Keep in mind that you cannot use `uid=$(id -u),gid=$(id -g)` if you are using Linux Native filesystems. For those, you will have to mount the volume as sudo then chown all the files in there to be accessible by your user. So assuming you were using `ext4` filesystem instead, you would mount it as
+```
+sudo mount /dev/mapper/myVolume /mnt
+```
+followed by
+```
+sudo chown $USER /mnt
+```
 
 ### Use that volume to store sensitive files
 The file is mounted in `/mnt` so that means you can open up you file manager, navigate to `/mnt` and start operating on the files there normally. Everything in `/mnt` in this case will be stored inside that volume you created
