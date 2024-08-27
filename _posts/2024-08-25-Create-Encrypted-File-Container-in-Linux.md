@@ -373,8 +373,14 @@ sudo cryptsetup luksClose myVolume
 ```
 
   
+### Change ownership of /mnt back to root in case of inconsistency
+Normally, you are not expected to have `/mnt` owned by your user. This can be caused by some inconsistencies when running these commands or due to user errors. In either case, its a good idea to change ownership of `/mnt` back to the `root` user.
 
-  
+
+```
+sudo chown root /mnt
+```
+The unmount script I wrote will do this automatically at the end.
 
 ## Normal usage
 
