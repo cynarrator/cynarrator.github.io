@@ -121,21 +121,19 @@ If you have a strict security requirement and have a large volume size to spare,
 For most people, LUKS1 is fine. It also has very small header size of around 2MB. It also makes your volume compatible with EDS Lite application. This is what you will see me demonstrating in the examples below. To set luks to luks1 you have to put in `--type luks1` otherwise it will select luks2 by default.
 
 
+### KiB/MiB/GiB vs KB/MB/GB
+When using `dd` command, you can either supply file size in `KiB` or `KB`. For example, to define a volume size of 4 Gigs you can pass in as `4G` which defines `4GiB` or `4GB` which defines `4GB`. File sizes are often defined in `KiB` or `MiB` to avoid confusion between whether `1MB = 1024KB` or `1MB = 1000KB`. It is intuitive for us to think of it in terms of multiples of `1024` so we will stick to using `K` for Kilobyte and `M` for megabyte, etc.
+
+
 
 ### Should you use sparse file or not
 
 Sparse files only take up space that it actually needs. This is very useful because the filesize of the container is reduced when it is not full. However, you should keep in mind that not all filesystems support them. It is reported not to work in Apple HFS+ filesystems and the support varies between filesystems. It is however reported to work with NTFS filesystem as well as most Linux native filesystems like ext4, xfs and so on. Learn more in the [Arch Wiki](https://wiki.archlinux.org/title/Sparse_file)
 
-You can create sparse files using either `dd` or `truncate` commands. Say for example you wanted to create a volume named `myvolume` that is of size 3 GiB, ie. the maximum size this volume can hold is 3GiB, you would use the truncate command as so,
+You can create sparse files using either `dd` or `truncate` commands. I only demonstrate how to use `truncate` command to avoid confusion but you will find how to use `dd` in the linked ArchWiki article. Say for example you wanted to create a volume named `myvolume` that is of size 3 GiB, ie. the maximum size this volume can hold is 3GiB, you would use the truncate command as so,
 
 ```
 truncate -s 3G myvolume
-```
-
-or `dd` command as
-
-```
-dd if=/dev/zero of=myvolume bs=1 count=0 seek=3G
 ```
 
 Here you can postfix `M` to denote size in MB and `G` to denote size in GB. For example, to create a file size 512M, you would specify the size as `512M`
@@ -203,28 +201,34 @@ If you want to do everything manually, perhaps you want to understand every step
 
   
 
-First, create a new volume using dd. You can either use a sparse file as described in **Notes and Disclaimer** section or a normal file. The process after this is exactly the same whether you choose a sparse file or not.
+First, create a new volume using dd. You can either use a sparse file as described in **Notes and Disclaimer** section or a normal file. In case you decide to use a sparse file, you do not need to do any of the below, just create a volume using `truncate` and move to the next step.
 
-For this example, I am creating a normal non-sparse volume of size `32 MiB` named `myluks.vol`. So I will be using `bs=1M` and `count=32` when running dd such as
+For this example, I am creating a normal non-sparse volume of size `32 MiB` named `myluks.vol`. Then,
 
-  
+- Determine the block size you wish to use
+Some common block sizes are `4K`, `8K`, `16K`, `32K`, `64K`, `128K`, `512K`, `1M` and `4M`. If you intend to use this block to store many smaller files, you may choose to use smaller block size, whereas if you have few big files, using bigger block size would be preferable. There is no wrong answer and it is not necessary to choose this super accurately. This is mostly about performance and memory usage. Most people tend to use either `4K` or `4M` which is totally fine. For demonstration, I will choose `4K` block size
+
+- Determine the size of the volume you wish to create
+This is the total size of the volume you wish to create. It can be of any size you want. For this demonstration, I will pick 32 MiB volume. That will be the size I want for my volume
+
+- Convert the volume size to the size unit used by block size
+I chose `32MiB` volume size and my block size is `4KiB`. My Block size is in KiB and my volume size is in MiB, meaning I will multiply `32` by `1024` which will result in `32768 KiB`
+
+If I had chosen volume size of `32GiB` I would instead have multiplied **32 \* 1024 \* 1024** to convert `32GiB` into `33554432KiB`
+
+- Divide the resulting volume size by block size
+Now that they use the same storage unit, we can divide them to get count. Since my volume size is `32768 KiB` and my block size is `4 KiB`, I can divide `32768 KiB` by `4KiB` to get `8192` which is the resulting `count`
+
+
+- Determine the name of the volume
+This can be any name as long as it does not contain spaces. Make sure this file does not already exists or it will be overwritten without any warning resulting in dataloss. For demonstration purpose I will name my volume `myluks.vol`. You can give any extension or no extension if you prefer
+
+Then you would run this command
 
 ```
-dd if=/dev/zero of=myluks.vol count=32 status=progress bs=1M
+dd if=/dev/zero of=myluks.vol bs=4k count=8192 status=progress
 ```
 
-If you notice, the actual size = `bs` * `count`
-So for 32MiB, it is `1M * 32`
-  
-
-You can use the postfix `M` for MiB and `G` for GiB, etc. To create a 32GiB volume I would have used `count=32 bs=1G` for example
-
-
-Rather than creating a normal volume, you can also create a `sparse` volume as described in the section **Notes and Disclaimer** whether by `dd` or `truncate`. You can follow the steps below normally whether you decide to use sparse volume or a normal volume. Important thing to note is, for a sparse file, you are supposed to put in `count=0 bs=1 seek=<size>` when running dd. For example, if I were to create a sparse file that can grow the maximum of 512MiB, I would pass in `count=0 bs=1 seek=512M` in dd as hinted in **Notes and Disclaimer**
-
-  
-
-  
 
 **Again, make sure that file named myluks.vol does not exist already or it will be overwritten and data in it will be lost**
 
@@ -298,7 +302,7 @@ sudo lsblk
 
   
 
-Then check the name under `loop0` section
+Then check the name under `loop` section
 
   
 
@@ -310,10 +314,10 @@ Then check the name under `loop0` section
 
 Once you opened the LUKS volume, you need to format it with a filesystem to be able to use it. For that, you need to know the name of the opened volume from the previous step. I used the name **myVolume** so I will use `/dev/mapper/myVolume` as a device to format. I have also decided to use **exFAT** as described in **Notes and Disclaimer**
 
-  
+It is recommended to use the same block size that you used in `dd` as you used in creation of the volume when formatting it for optimal performance. It is not necessary however and things will still work normally even when the block sizes are not aligned. Unfortunately, the flags to provide block size for a filesystem differs from one filesystem to the next so you will have to read the man page to figure that out. In `exfat` we use the `-s` option to specify block size in bytes. Since we chose `4K` for the block size, when converted to bytes by multiplying with `1024` we get `4096` so we use
 
 ```
-sudo mkfs.exfat /dev/mapper/myVolume
+sudo mkfs.exfat -s 4096 /dev/mapper/myVolume
 ```
 
 ### Mount the filesystem
