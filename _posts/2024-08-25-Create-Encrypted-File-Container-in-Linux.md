@@ -206,21 +206,26 @@ First, create a new volume using dd. You can either use a sparse file as describ
 For this example, I am creating a normal non-sparse volume of size `32 MiB` named `myluks.vol`. Then,
 
 - Determine the block size you wish to use
+
 Some common block sizes are `4K`, `8K`, `16K`, `32K`, `64K`, `128K`, `512K`, `1M` and `4M`. If you intend to use this block to store many smaller files, you may choose to use smaller block size, whereas if you have few big files, using bigger block size would be preferable. There is no wrong answer and it is not necessary to choose this super accurately. This is mostly about performance and memory usage. Most people tend to use either `4K` or `4M` which is totally fine. For demonstration, I will choose `4K` block size
 
 - Determine the size of the volume you wish to create
+
 This is the total size of the volume you wish to create. It can be of any size you want. For this demonstration, I will pick 32 MiB volume. That will be the size I want for my volume
 
 - Convert the volume size to the size unit used by block size
+
 I chose `32MiB` volume size and my block size is `4KiB`. My Block size is in KiB and my volume size is in MiB, meaning I will multiply `32` by `1024` which will result in `32768 KiB`
 
 If I had chosen volume size of `32GiB` I would instead have multiplied **32 \* 1024 \* 1024** to convert `32GiB` into `33554432KiB`
 
 - Divide the resulting volume size by block size
+
 Now that they use the same storage unit, we can divide them to get count. Since my volume size is `32768 KiB` and my block size is `4 KiB`, I can divide `32768 KiB` by `4KiB` to get `8192` which is the resulting `count`
 
 
 - Determine the name of the volume
+
 This can be any name as long as it does not contain spaces. Make sure this file does not already exists or it will be overwritten without any warning resulting in dataloss. For demonstration purpose I will name my volume `myluks.vol`. You can give any extension or no extension if you prefer
 
 Then you would run this command
