@@ -415,7 +415,6 @@ Normally, you are not expected to have `/mnt` owned by your user. This can be ca
 ```
 sudo chown root /mnt
 ```
-The unmount script I wrote will do this automatically at the end.
 
 ## Normal usage
 
