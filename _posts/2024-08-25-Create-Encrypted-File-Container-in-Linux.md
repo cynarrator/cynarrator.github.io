@@ -120,25 +120,36 @@ If you have a strict security requirement and have a large volume size to spare,
 
 For most people, LUKS1 is fine. It also has very small header size of around 2MB. It also makes your volume compatible with EDS Lite application. This is what you will see me demonstrating in the examples below. To set luks to luks1 you have to put in `--type luks1` otherwise it will select luks2 by default.
 
+
+
+### Should you use sparse file or not
+
+Sparse files only take up space that it actually needs. This is very useful because the filesize of the container is reduced when it is not full. However, you should keep in mind that not all filesystems support them. It is reported not to work in Apple HFS+ filesystems and the support varies between filesystems. It is however reported to work with NTFS filesystem as well as most Linux native filesystems like ext4, xfs and so on. Learn more in the [Arch Wiki](https://wiki.archlinux.org/title/Sparse_file)
+
+You can create sparse files using either `dd` or `truncate` commands. Say for example you wanted to create a volume named `myvolume` that is of size 3 GB, you would use the truncate command as so,
+
+```
+truncate -s 3G myvolume
+```
+
+or `dd` command as
+
+```
+dd if=/dev/zero of=myvolume bs=1 count=0 seek=3G
+```
+
+Here you can postfix `M` to denote size in MB and `G` to denote size in GB. For example, to create a file size 512M, you would specify the size as `512M`
   
 
   
 
-### Things to rememeber with dd command
+### Things to rememeber with dd and truncate command
 
   
 
-You need to be very careful when running dd command, be especially sure to double check `of=` value because if the file with that name in that path already exists, dd will just override it without prompting for warning. You may lose your files if you are not careful.
+You need to be very careful when running dd command as well as truncate command, be especially sure to double check `of=` value in case of dd because if the file with that name in that path already exists, dd will just override it without prompting for warning. You may lose your files if you are not careful. Same is true with `truncate`
 
   
-
-  
-
-### Steps are pretty tedious
-
-  
-
-I wanted to explain everything manually. However all this can be automated with scripts. You can easily write a bash script to do all these in a single command.
 
   
 ## Get the scripts to do it
@@ -203,6 +214,9 @@ dd if=/dev/zero of=myluks.vol count=1 status=progress bs=32M
   
 
 You can use the postfix `M` for MB and `G` for GB, etc. To create a 32GB volume I would have used `bs=32G` for example
+
+
+Rather than creating a normal volume, you can also create a `sparse` volume as described in the section `Notes and Disclaimer` whether by `dd` or `truncate`
 
   
 
