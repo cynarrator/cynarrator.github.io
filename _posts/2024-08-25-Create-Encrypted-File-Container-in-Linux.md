@@ -211,7 +211,9 @@ For this example, I am creating a normal non-sparse volume of size `32 MiB` name
 
 - Determine the size of the volume you wish to create
 
-    This is the total size of the volume you wish to create. It can be of any size you want. For this demonstration, I will pick 32 MiB volume. That will be the size I want for my volume
+    This is the total size of the volume you wish to create. It can be of any size you want. For this demonstration, I will pick 32 MiB volume. That will be the size I want for my volume.
+
+    It is strongly recommended that you choose a volume size that is a power of 2 such as `2`, `4`, `8`, `16`, `32`, `64`, `128`, `256`, `512`,...
 
 - Convert the volume size to the size unit used by block size
 
