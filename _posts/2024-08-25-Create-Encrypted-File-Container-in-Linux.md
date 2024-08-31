@@ -358,6 +358,12 @@ The file is mounted in `/mnt` so that means you can open up you file manager, na
 
   
 
+### Sync disks
+If you have recently written alot of data into that volume, it is a good idea to sync the disks after you have completed the copy or move operation to ensure that file buffers were properly written to disks and there will be no file corruption. To do that you can simply run the command
+
+```
+sudo sync
+```
   
 
 ### Unmount the volume
