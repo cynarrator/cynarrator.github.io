@@ -216,7 +216,7 @@ dd if=/dev/zero of=myluks.vol count=1 status=progress bs=32M
 You can use the postfix `M` for MB and `G` for GB, etc. To create a 32GB volume I would have used `bs=32G` for example
 
 
-Rather than creating a normal volume, you can also create a `sparse` volume as described in the section `Notes and Disclaimer` whether by `dd` or `truncate`
+Rather than creating a normal volume, you can also create a `sparse` volume as described in the section **Notes and Disclaimer** whether by `dd` or `truncate`
 
   
 
