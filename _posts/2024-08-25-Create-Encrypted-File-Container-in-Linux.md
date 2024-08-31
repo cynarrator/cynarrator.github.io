@@ -207,7 +207,7 @@ For this example, I am creating a normal non-sparse volume of size `32 MiB` name
 
 - Determine the block size you wish to use
 
-    Some common block sizes are `4K`, `8K`, `16K`, `32K`, `64K`, `128K`, `512K`, `1M` and `4M`. If you intend to use this block to store many smaller files, you may choose to use smaller block size, whereas if you have few big files, using bigger block size would be preferable. There is no wrong answer and it is not necessary to choose this super accurately. This is mostly about performance and memory usage. Most people tend to use either `4K` or `4M` which is totally fine. For demonstration, I will choose `4K` block size
+    Some common block sizes are `4K`, `8K`, `16K`, `32K`, `64K`, `128K`, `512K`, `1M` and `4M`. This determines how many blocks are read/written in a single read/write operation. If you choose a very large block size, more data gets written at a time taking more memory but taking less processing power and disk usage. This is good if you have huge files but it wastes memory if you have very small files. There is no wrong answer and it is not necessary to choose this super accurately. This is mostly about performance and memory usage. Most people tend to use either `1M` or `4M` which is totally fine. For demonstration, I will choose `4K` block size because I am going to set it's volume size to `32M` later on where one is not expected to store huge files. This is different from filesystem block size also set later
 
 - Determine the size of the volume you wish to create
 
