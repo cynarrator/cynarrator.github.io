@@ -61,7 +61,7 @@ Most people recommend using [Veracrypt](https://veracrypt.fr/en/Home.html) to cr
 
   
 
-- It takes the full size of the volume even if there is no content on it or it is not yet full
+- It takes the full size of the volume even if there is no content on it or it is not yet full. This can be overcome by using a `sparse` volume but not all filesystems and platforms support it
 
   
 
