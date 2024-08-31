@@ -126,7 +126,7 @@ For most people, LUKS1 is fine. It also has very small header size of around 2MB
 
 Sparse files only take up space that it actually needs. This is very useful because the filesize of the container is reduced when it is not full. However, you should keep in mind that not all filesystems support them. It is reported not to work in Apple HFS+ filesystems and the support varies between filesystems. It is however reported to work with NTFS filesystem as well as most Linux native filesystems like ext4, xfs and so on. Learn more in the [Arch Wiki](https://wiki.archlinux.org/title/Sparse_file)
 
-You can create sparse files using either `dd` or `truncate` commands. Say for example you wanted to create a volume named `myvolume` that is of size 3 GB, you would use the truncate command as so,
+You can create sparse files using either `dd` or `truncate` commands. Say for example you wanted to create a volume named `myvolume` that is of size 3 GiB, ie. the maximum size this volume can hold is 3GiB, you would use the truncate command as so,
 
 ```
 truncate -s 3G myvolume
@@ -203,20 +203,24 @@ If you want to do everything manually, perhaps you want to understand every step
 
   
 
-First, create a new volume using dd. Here, I will create a new volume of size 32MB. I will name the volume myluks.vol but you can name it whatever with whatever extension you want. I will be using LUKS1 for the reasons explained above in **Notes and Disclaimer** section
+First, create a new volume using dd. You can either use a sparse file as described in **Notes and Disclaimer** section or a normal file. The process after this is exactly the same whether you choose a sparse file or not.
+
+For this example, I am creating a normal non-sparse volume of size `32 MiB` named `myluks.vol`. So I will be using `bs=1M` and `count=32` when running dd such as
 
   
 
 ```
-dd if=/dev/zero of=myluks.vol count=1 status=progress bs=32M
+dd if=/dev/zero of=myluks.vol count=32 status=progress bs=1M
 ```
 
+If you notice, the actual size = `bs` * `count`
+So for 32MiB, it is `1M * 32`
   
 
-You can use the postfix `M` for MB and `G` for GB, etc. To create a 32GB volume I would have used `bs=32G` for example
+You can use the postfix `M` for MiB and `G` for GiB, etc. To create a 32GiB volume I would have used `count=32 bs=1G` for example
 
 
-Rather than creating a normal volume, you can also create a `sparse` volume as described in the section **Notes and Disclaimer** whether by `dd` or `truncate`. You can follow the steps below normally whether you decide to use sparse volume or a normal volume
+Rather than creating a normal volume, you can also create a `sparse` volume as described in the section **Notes and Disclaimer** whether by `dd` or `truncate`. You can follow the steps below normally whether you decide to use sparse volume or a normal volume. Important thing to note is, for a sparse file, you are supposed to put in `count=0 bs=1 seek=<size>` when running dd. For example, if I were to create a sparse file that can grow the maximum of 512MiB, I would pass in `count=0 bs=1 seek=512M` in dd as hinted in **Notes and Disclaimer**
 
   
 
