@@ -225,7 +225,7 @@ For this example, I am creating a normal non-sparse volume of size `32 MiB` name
 
     Now that they use the same storage unit, we can divide them to get count. Since my volume size is `32768 KiB` and my block size is `4 KiB`, I can divide `32768 KiB` by `4KiB` to get `8192` which is the resulting `count`.
 
-    If your `count` is not a whole number, ie. it contains decimal point, you would want to choose a different block size that perfectly divides your volume size. A good idea is to either use `1M` or `1K` for `block` size. This is because any number is divisible by 1. But any other block size that perfectly divides your volume size is okay.
+    If your `count` is not a whole number, ie. it contains decimal point, you would want to choose a different block size that perfectly divides your volume size. A good idea is to either use `1M` or `1K` for `block` size. This is because any number is divisible by 1. But any other block size that perfectly divides your volume size is okay. In this case you would repeat the calculation again but with a different block size
 
 
 - Determine the name of the volume
