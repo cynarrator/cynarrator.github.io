@@ -213,7 +213,7 @@ For this example, I am creating a normal non-sparse volume of size `32 MiB` name
 
     This is the total size of the volume you wish to create. It can be of any size you want. For this demonstration, I will pick 32 MiB volume. That will be the size I want for my volume.
 
-    It is required that you choose a volume size that is a power of 2 such as `2`, `4`, `8`, `16`, `32`, `64`, `128`, `256`, `512`,...
+    It is recommended that you choose a volume size that is a power of 2 such as `2`, `4`, `8`, `16`, `32`, `64`, `128`, `256`, `512`,...
 
 - Convert the volume size to the size unit used by block size
 
@@ -223,7 +223,9 @@ For this example, I am creating a normal non-sparse volume of size `32 MiB` name
 
 - Divide the resulting volume size by block size
 
-    Now that they use the same storage unit, we can divide them to get count. Since my volume size is `32768 KiB` and my block size is `4 KiB`, I can divide `32768 KiB` by `4KiB` to get `8192` which is the resulting `count`
+    Now that they use the same storage unit, we can divide them to get count. Since my volume size is `32768 KiB` and my block size is `4 KiB`, I can divide `32768 KiB` by `4KiB` to get `8192` which is the resulting `count`.
+
+    If your `count` is not a whole number, ie. it contains decimal point, you would want to choose a different block size that perfectly divides your volume size. A good idea is to either use `1M` or `1K` for `block` size. This is because any number is divisible by 1. But any other block size that perfectly divides your volume size is okay.
 
 
 - Determine the name of the volume
@@ -321,7 +323,7 @@ Then check the name under `loop` section
 
 Once you opened the LUKS volume, you need to format it with a filesystem to be able to use it. For that, you need to know the name of the opened volume from the previous step. I used the name **myVolume** so I will use `/dev/mapper/myVolume` as a device to format. I have also decided to use **exFAT** as described in **Notes and Disclaimer**
 
-It is recommended to use the same block size that you used in `dd` as you used in creation of the volume when formatting it for optimal performance. It is not necessary however and things will still work normally even when the block sizes are not aligned. Unfortunately, the flags to provide block size for a filesystem differs from one filesystem to the next so you will have to read the man page to figure that out. In `exfat` we use the `-s` option to specify block size in bytes. Since we chose `4K` for the block size, when converted to bytes by multiplying with `1024` we get `4096` so we use
+It is recommended to use the same block size/cluster size that you used in `dd` as you used in creation of the volume when formatting it for optimal performance. It is not necessary however and things will still work normally even when the block sizes are not aligned. Unfortunately, the flags to provide block size for a filesystem differs from one filesystem to the next so you will have to read the man page to figure that out. In `exfat` we use the `-s` option to specify block size in bytes. Since we chose `4K` for the block size, when converted to bytes by multiplying with `1024` we get `4096` so we use
 
 ```
 sudo mkfs.exfat -s 4096 /dev/mapper/myVolume
