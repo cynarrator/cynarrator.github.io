@@ -193,6 +193,8 @@ If you want to do everything manually, perhaps you want to understand every step
 
 - Close the container
 
+- Cleanup in case you made extra directories for mounting
+
   
 
   
