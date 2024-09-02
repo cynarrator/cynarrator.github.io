@@ -259,7 +259,9 @@ sudo cryptsetup luksFormat --type luks1 myluks.vol
 
   
 
-Type in **YES** in all caps and provide a password. Make sure you provide a good password
+Type in **YES** in all caps and provide a password. Make sure you provide a good password.
+
+LUKS1 takes up `2M` Header size whereas LUKS2 takes up upto `64M`. If you wish to use LUKS2, make sure you have enough space for the header and data you wish to store. Ideally, much higher than `64M`
 
   
 
@@ -329,39 +331,45 @@ It is recommended to use the same block size/cluster size that you used in `dd` 
 sudo mkfs.exfat -s 4096 /dev/mapper/myVolume
 ```
 
+Also keep in mind that filesystems also take up header space on top of LUKS. Filesystem header space depends on the filesystem and the cluster size
+
 ### Mount the filesystem
 
-Now that you have formatted the opened LUKS volume with **exFAT** its time to mount it. You can mount it anywhere you want but I chose `/mnt`. Here is a command on how to mount `exFAT` filesystem in `/mnt`.
+- Choose a mount point
 
-```
-sudo mount -t exfat -o uid=$(id -u),gid=$(id -g) /dev/mapper/myVolume /mnt
-```
+    Mount point can be any empty directory in the system at any location owned by any user. Make sure the directory exists, create it if it does not. In this example, I am going to choose `/mnt` which is already present standard mount point used for this purpose
 
-  
+- Create a folder inside your desired mount point
 
-Here, I have mounted that volume in `/mnt` and given it a permission of the current user to do whatever that user wants.
+    It is recommended that you create a folder inside your desired mount point with the name you used to create LUKS volume. This makes it easy to manage multiple volumes that you wish to use. In this example, I will make a folder named `myVolume`. Note that since `/mnt` is owned by `root` user, I need to run this as a superuser. But if it were in a directory your user owned, you should not run this command as a superuser but the user that owned the parent directory
+    
+    ```
+sudo mkdir /mnt/myVolume
+    ```
 
-  
+- Mount the volume with permission for your user
 
-  
+    If you are using a filesystem that does not support Linux permission and ownership, you would pass in the option `-o uid=$(id -u),gid=$(id -g)` when mounting. This works well for filesystem such as `exfat` This, however will cause you an error when mounting a filesystem that supports Linux permission and ownership such as in case of `ext4` and other linux native filesystems. In that case, you would mount the directory normally then `chown` the files within to your user.
 
-Keep in mind that you cannot use `uid=$(id -u),gid=$(id -g)` if you are using Linux Native filesystems. For those, you will have to mount the volume as sudo then chown all the files in there to be accessible by your user. So assuming you were using `ext4` filesystem instead, you would mount it as
+    In this case, I am using `exFAT` filesystem and wish to mount into `/mnt/myVolume` so I would do it as
 
-  
+    ```
+sudo mount -t exfat -o uid=$(id -u),gid=$(id -g) /dev/mapper/myVolume /mnt/myVolume
+    ```
 
-```
-sudo mount /dev/mapper/myVolume /mnt
-```
+    But say you used `ext4` filesystem when formatting the volume. In that case, you would first mount the volume normally as
 
-  
+    ```
+sudo mount -t ext4 /mnt/myVolume
+    ```
 
-followed by
+    followed by
 
-  
+    ```
+sudo chown $USER /mnt/myVolume
+    ```
 
-```
-sudo chown $USER /mnt
-```
+    This means, the actual mount point for my case now is `/mnt/myVolume`
 
   
 
@@ -371,7 +379,7 @@ sudo chown $USER /mnt
 
   
 
-The file is mounted in `/mnt` so that means you can open up you file manager, navigate to `/mnt` and start operating on the files there normally. Everything in `/mnt` in this case will be stored inside that volume you created
+The file is mounted in `/mnt/myVolume` so that means you can open up you file manager, navigate to `/mnt/myVolume` and start operating on the files there normally. Everything in `/mnt/myVolume` in this case will be stored encrypted inside that volume you created
 
   
 
@@ -392,7 +400,7 @@ After you are done, you can unmount the volume before closing the container
   
 
 ```
-sudo umount /mnt
+sudo umount /mnt/myVolume
 ```
 
   
@@ -410,12 +418,18 @@ sudo cryptsetup luksClose myVolume
 ```
 
   
-### Change ownership of /mnt back to root in case of inconsistency
-Normally, you are not expected to have `/mnt` owned by your user. This can be caused by some inconsistencies when running these commands or due to user errors. In either case, its a good idea to change ownership of `/mnt` back to the `root` user.
-
+### Remove the folder you created to mount the volume within your chosen mountpoint
+I created a folder called `myVolume` inside `/mnt`. After I am done working with the volume, I will delete that folder because it is no longer needed. Make sure you are choosing the correct path for the folder you wish to delete. You would adjust this command according to the mount point you used
 
 ```
-sudo chown root /mnt
+sudo rm -r /mnt/myVolume
+```
+
+### [Optional] Change ownership of /mnt back to root
+It is recommended that you do not mount directly into `/mnt`, especially if you used a linux native filesystem because you may end up unintentionally owning `/mnt` directory for your user. This is not default behaviour and can cause some issues in some cases. To fix that, you will have to own `/mnt` as `root` user
+
+```
+sudo chown /mnt root
 ```
 
 ## Normal usage
@@ -444,6 +458,9 @@ You are not always going to follow all these steps when using the volume, you ca
 
 - Close the LUKS container
 
+
+- Remove the folder you made to mount if it was not already present
+
   
 
   
@@ -452,4 +469,4 @@ You are not always going to follow all these steps when using the volume, you ca
 
   
 
-Even though the steps are quiet cumbersome at first, remember that you can script most of it to make it easier to interact everyday.
+Even though the steps are quiet cumbersome at first, remember that you can script most of it to make it easier to interact everyday. You can use my scripts from my gitlab linked above or write your own scripts. There are many features in LUKS such as using multiple passwords to open the same volume, storing the header in another location, etc. Everything I have written is just a tip of the iceberg and i suggest you read more on LUKS's features and so on if you want to learn more
