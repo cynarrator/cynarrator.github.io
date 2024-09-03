@@ -335,6 +335,10 @@ sudo mkfs.exfat -s 4096 /dev/mapper/myVolume
 
 Also keep in mind that filesystems also take up header space on top of LUKS. Filesystem header space depends on the filesystem and the cluster size
 
+### ERROR: boundary alignment is too big
+
+If you get this error, chances are your block size does not divide the volume size or some other error. This error is specific to `exFAT` filesystem but other filesystems display error in a similar way. I would try setting the filesystem cluster size as same as the block size I used in `dd` and if that didnt work out, I will switch the cluster size to `1M`. In some weird case, you may need to reboot the system in order to not have this issue again depending on what version of filesystem driver you are using. But is rarely the case.
+
 ### Mount the filesystem
 
 - Choose a mount point
