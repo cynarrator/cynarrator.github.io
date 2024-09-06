@@ -226,9 +226,15 @@ For this example, I am creating a normal non-sparse volume of size `32 MiB` name
 - Divide the resulting volume size by block size
 
     Now that they use the same storage unit, we can divide them to get count. Since my volume size is `32768 KiB` and my block size is `4 KiB`, I can divide `32768 KiB` by `4KiB` to get `8192` which is the resulting `count`.
+#### Count is not a whole number, ie. contains decimal point
+    You are not allowed to put in a number with a decimal point when supplying either `count` or `bs` for `dd` later down. In case you get a `count` with a decimal point, you may choose to do one of the following
+    - Discard the numbers after decimal point
 
-    If your `count` is not a whole number, ie. it contains decimal point, you would want to choose a different block size that perfectly divides your volume size. A good idea is to either use `1M` or `1K` for `block` size. This is because any number is divisible by 1. But any other block size that perfectly divides your volume size is okay. In this case you would repeat the calculation again but with a different block size
+        It is the simplest thing to do. At most you will lose a fraction of the block size. This is negligible loss in storage space and will not matter for most purpose. This, however will matter if you set your block size very big. This is why it is recommended not to set a block size that is very big
 
+    - Choose a different block size
+    
+        The reason why you are getting a `count` as a number containing decimal point is because your block size does not equally divide the volume size. So you want to make sure you choose a block size that properly divides the volume size. As an added bonus, you may realize that you can set your block size to `1M` or `1K` because any number is perfectly divisible by 1
 
 - Determine the name of the volume
 
