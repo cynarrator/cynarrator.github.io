@@ -228,13 +228,14 @@ For this example, I am creating a normal non-sparse volume of size `32 MiB` name
     Now that they use the same storage unit, we can divide them to get count. Since my volume size is `32768 KiB` and my block size is `4 KiB`, I can divide `32768 KiB` by `4KiB` to get `8192` which is the resulting `count`.
 #### Count is not a whole number, ie. contains decimal point
     You are not allowed to put in a number with a decimal point when supplying either `count` or `bs` for `dd` later down. In case you get a `count` with a decimal point, you may choose to do one of the following
-    - Discard the numbers after decimal point
 
-        It is the simplest thing to do. At most you will lose a fraction of the block size. This is negligible loss in storage space and will not matter for most purpose. This, however will matter if you set your block size very big. This is why it is recommended not to set a block size that is very big
-
-    - Choose a different block size
+    - Choose a different block size [Recommended]
 
         The reason why you are getting a `count` as a number containing decimal point is because your block size does not equally divide the volume size. So you want to make sure you choose a block size that properly divides the volume size. As an added bonus, you may realize that you can set your block size to `1M` or `1K` because any number is perfectly divisible by 1
+
+    - Discard the numbers after decimal point
+
+        You may just discard the digits after decimal point. At most you will lose a fraction of the block size. This is negligible loss in storage space and will not matter for most purpose. This, however will matter if you set your block size very big. This is why it is recommended not to set a block size that is very big. This may also cause it to fail to format with the filesystem below due to boundry misalignment so it is not recommended
 
 - Determine the name of the volume
 
@@ -343,7 +344,7 @@ Also keep in mind that filesystems also take up header space on top of LUKS. Fil
 
 #### ERROR: boundary alignment is too big
 
-If you get this error, chances are your block size does not divide the volume size or some other error. This error is specific to `exFAT` filesystem but other filesystems display error in a similar way. I would try setting the filesystem cluster size as same as the block size I used in `dd` and if that didnt work out, I will switch the cluster size to `1M`. In some weird case, you may need to reboot the system in order to not have this issue again depending on what version of filesystem driver you are using. But is rarely the case.
+If you get this error, chances are your block size does not divide the volume size or some other error. This error message is specific to `exFAT` filesystem but other filesystems display similar error. This may be caused by discarding the decimal digits when setting `count` value for `dd`. I would try setting the filesystem cluster size as same as the block size I used in `dd` and if that didnt work out, I will switch the cluster size to `1M`. In some weird case, you may need to reboot the system in order to not have this issue again depending on what version of filesystem driver you are using. But is rarely the case.
 
 ### Mount the filesystem
 
