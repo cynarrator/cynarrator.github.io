@@ -136,7 +136,7 @@ You can create sparse files using either `dd` or `truncate` commands. I only dem
 truncate -s 3G myvolume
 ```
 
-Here you can postfix `M` to denote size in MB and `G` to denote size in GB. For example, to create a file size 512M, you would specify the size as `512M`
+Here you can postfix `M` to denote size in MB and `G` to denote size in GB. For example, to create a file size 512MiB, you would specify the size as `512M`
   
 
   
@@ -233,7 +233,7 @@ For this example, I am creating a normal non-sparse volume of size `32 MiB` name
         It is the simplest thing to do. At most you will lose a fraction of the block size. This is negligible loss in storage space and will not matter for most purpose. This, however will matter if you set your block size very big. This is why it is recommended not to set a block size that is very big
 
     - Choose a different block size
-    
+
         The reason why you are getting a `count` as a number containing decimal point is because your block size does not equally divide the volume size. So you want to make sure you choose a block size that properly divides the volume size. As an added bonus, you may realize that you can set your block size to `1M` or `1K` because any number is perfectly divisible by 1
 
 - Determine the name of the volume
