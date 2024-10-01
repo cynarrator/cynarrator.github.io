@@ -117,7 +117,7 @@ For this example, I am creating a normal non-sparse volume of size `32 MiB` name
 
 - Determine the block size you wish to use
 
-  Some common block sizes are `4K`, `8K`, `16K`, `32K`, `64K`, `128K`, `512K`, `1M` and `4M`. This determines how many blocks are read/written in a single read/write operation. If you choose a very large block size, more data gets written at a time taking more memory but taking less processing power and disk usage. This is good if you have huge files but it wastes memory if you have very small files. There is no wrong answer and it is not necessary to choose this super accurately. This is mostly about performance and memory usage. Most people tend to use either `1M` or `4M` which is totally fine. For demonstration, I will choose `4K` block size because I am going to set it's volume size to `32M` later on where one is not expected to store huge files. This is different from filesystem block size also set later
+  Some common block sizes are `4K`, `8K`, `16K`, `32K`, `64K`, `128K`, `512K`, `1M` and `4M`. This determines how many blocks are read/written in a single read/write operation. If you choose a very large block size, more data gets written at a time taking more memory but taking less processing power and disk usage. This is good if you have huge files but it wastes memory if you have very small files. There is no wrong answer and it is not necessary to choose this super accurately. This is mostly about performance and memory usage. Most people tend to use either `1M` or `4M` which is totally fine. For demonstration, I will choose `4K` block size because I am going to set it's volume size to `32M` later on where one is not expected to store huge files. This is different from filesystem block size also set later. Also note that block size is written as `bs` when passed into `dd` later
 
 - Determine the size of the volume you wish to create
 
@@ -137,15 +137,15 @@ For this example, I am creating a normal non-sparse volume of size `32 MiB` name
 
 #### Count is not a whole number, ie. contains decimal point
 
-    You are not allowed to put in a number with a decimal point when supplying either `count` or `bs` for `dd` later down. In case you get a `count` with a decimal point, you may choose to do one of the following
+You are not allowed to put in a number with a decimal point when supplying either `count` or `bs` for `dd` later down. In case you get a `count` with a decimal point, you may choose to do one of the following
 
-    - Choose a different block size [Recommended]
+- Choose a different block size [Recommended]
 
-        The reason why you are getting a `count` as a number containing decimal point is because your block size does not equally divide the volume size. So you want to make sure you choose a block size that properly divides the volume size. As an added bonus, you may realize that you can set your block size to `1M` or `1K` because any number is perfectly divisible by 1
+    The reason why you are getting a `count` as a number containing decimal point is because your block size does not equally divide the volume size. So you want to make sure you choose a block size that properly divides the volume size. As an added bonus, you may realize that you can set your block size to `1M` or `1K` because any number is perfectly divisible by 1
 
-    - Discard the numbers after decimal point
+- Discard the numbers after decimal point
 
-        You may just discard the digits after decimal point. At most you will lose a fraction of the block size. This is negligible loss in storage space and will not matter for most purpose. This, however will matter if you set your block size very big. This is why it is recommended not to set a block size that is very big. This may also cause it to fail to format with the filesystem below due to boundry misalignment so it is not recommended
+    You may just discard the digits after decimal point. At most you will lose a fraction of the block size. This is negligible loss in storage space and will not matter for most purpose. This, however will matter if you set your block size very big. This is why it is recommended not to set a block size that is very big. This may also cause it to fail to format with the filesystem below due to boundry misalignment so it is not recommended
 
 - Determine the name of the volume
 
