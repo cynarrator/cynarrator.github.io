@@ -77,9 +77,23 @@ Here you can postfix `M` to denote size in MB and `G` to denote size in GB. For 
 
 You need to be very careful when running dd command as well as truncate command, be especially sure to double check `of=` value in case of dd because if the file with that name in that path already exists, dd will just override it without prompting for warning. You may lose your files if you are not careful. Same is true with `truncate`
 
-### Do not mount the same volume twice in different locations
+### Do not mount the same volume multiple times without bind mount
 
-You may accidentally mount the same volume twice in two different mount points. While you are allowed to do so, keep in mind that because they are mounted in two different mountpoints, they are treated as seperate devices by the kernel and do not share the state even though they point to the same physical location on the disk. This causes serious inconsistencies and file corruption in most cases
+You may accidentally mount the same volume twice in two different mount points. While you are allowed to do so, keep in mind that because they are mounted in two different mountpoints, they are treated as seperate devices by the kernel and do not share the state even though they point to the same physical location on the disk. This causes serious inconsistencies and file corruption in most cases. It is recommended that you only mount a single volume with a single name in a single mount point.
+
+There normally is no reason to do so but if you have a specific reason to have the same volume mounted in multiple places, you can use `--bind` or `--rbind` to bind recursively if the volume has further mounted volumes. But keep in mind that you can only use these after you have mounted the volume once somewhere. In this case you choose the mounted location as the source
+
+Example:
+You want to mount `/dev/mapper/myVol` into `/mnt/myVol` and `/home/user/myVol`
+
+You would first mount `/dev/mapper/myVol` into `/mnt/myVol` without bind mount
+```
+sudo mount /dev/mapper/myVol /mnt/myVol
+```
+You would then bind mount `/mnt/myVol` into `/home/user/myVol`
+```
+sudo mount --bind /mnt/myVol /home/user/myVol
+```
 
 ## Get the scripts to do it
 
