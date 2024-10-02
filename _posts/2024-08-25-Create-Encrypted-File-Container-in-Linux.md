@@ -163,7 +163,7 @@ For this example, I am creating a normal non-sparse volume of size `32 MiB` name
 
 - Determine the name of the volume
 
-  This can be any name as long as it does not contain spaces. Make sure this file does not already exists or it will be overwritten without any warning resulting in dataloss. For demonstration purpose I will name my volume `myluks.vol`. You can give any extension or no extension if you prefer
+  This can be any name as long as it does not contain spaces. Make sure this file does not already exists or it will be overwritten without any warning resulting in dataloss. For demonstration purpose I will name my volume `myluks.vol`. You can give any extension or no extension if you prefer. This is passed in as `of=` into `dd`
 
 Then you would run this command
 
