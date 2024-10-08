@@ -233,39 +233,35 @@ If you get this error, chances are your block size does not divide the volume si
 
 - Create a folder inside your desired mount point
 
-      It is recommended that you create a folder inside your desired mount point with the name you used to create LUKS volume. This makes it easy to manage multiple volumes that you wish to use. In this example, I will make a folder named `myVolume`. Note that since `/mnt` is owned by `root` user, I need to run this as a superuser. But if it were in a directory your user owned, you should not run this command as a superuser but the user that owned the parent directory
+  It is recommended that you create a folder inside your desired mount point with the name you used to create LUKS volume. This makes it easy to manage multiple volumes that you wish to use. In this example, I will make a folder named `myVolume`. Note that since `/mnt` is owned by `root` user, I need to run this as a superuser. But if it were in a directory your user owned, you should not run this command as a superuser but the user that owned the parent directory
 
-      ```
-
+  ```
   sudo mkdir /mnt/myVolume
   ```
 
 - Mount the volume with permission for your user
 
-      If you are using a filesystem that does not support Linux permission and ownership, you would pass in the option `-o uid=$(id -u),gid=$(id -g)` when mounting. This works well for filesystem such as `exfat` This, however will cause you an error when mounting a filesystem that supports Linux permission and ownership such as in case of `ext4` and other linux native filesystems. In that case, you would mount the directory normally then `chown` the files within to your user.
+  If you are using a filesystem that does not support Linux permission and ownership, you would pass in the option `-o uid=$(id -u),gid=$(id -g)` when mounting. This works well for filesystem such as `exfat` This, however will cause you an error when mounting a filesystem that supports Linux permission and ownership such as in case of `ext4` and other linux native filesystems. In that case, you would mount the directory normally then `chown` the files within to your user.
 
-      In this case, I am using `exFAT` filesystem and wish to mount into `/mnt/myVolume` so I would do it as
+  In this case, I am using `exFAT` filesystem and wish to mount into `/mnt/myVolume` so I would do it as
 
-      ```
-
+  ```
   sudo mount -t exfat -o uid=$(id -u),gid=$(id -g) /dev/mapper/myVolume /mnt/myVolume
   ```
 
-      But say you used `ext4` filesystem when formatting the volume. In that case, you would first mount the volume normally as
+  But say you used `ext4` filesystem when formatting the volume. In that case, you would first mount the volume normally as
 
-      ```
-
+  ```
   sudo mount -t ext4 /mnt/myVolume
   ```
 
-      followed by
+  followed by
 
-      ```
-
+  ```
   sudo chown $USER /mnt/myVolume
   ```
 
-      This means, the actual mount point for my case now is `/mnt/myVolume`
+  This means, the actual mount point for my case now is `/mnt/myVolume`
 
 ### Use that volume to store sensitive files
 
